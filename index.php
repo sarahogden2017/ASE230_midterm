@@ -60,7 +60,7 @@
 
   // continue as guest
   if (isset($_POST['guest'])) {
-    $_SESSION['username'] = 'Guest';
+    $_SESSION['username'] = 'guest';
     header("Location: ./post/index.php");
     exit();
   }

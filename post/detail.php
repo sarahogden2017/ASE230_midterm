@@ -38,7 +38,7 @@ function get_entity() {
 </div>
 
 <?php
-if($_SESSION!=null){
+if($_SESSION['username']!='guest'){
 	?>
 	<a href="edit.php" class="btn btn-primary m-4">Make Edits</a>
 	<a href="delete.php" class="btn btn-primary m-4">Delete Entry</a>
