@@ -9,9 +9,10 @@ function display_entity($entity_array) {
 	//$half_point = round(count($entity_array)/2);
 	//$col_1_array=array_slice($entity_array,0,$half_point);
 	//$col_2_array=array_slice($entity_array, $half_point);
+	$row_count = 1;
     for($i=0;$i<count($entity_array);$i++) { ?>
 		<div class="col">
-		<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+		<div class="card text-white bg-dark mb-3" style="max-width:30rem;">
 			<div class="card-body">
 				<h4 class="card-title"><?=$entity_array[$i]['prompt'] ?></h4>
 				<h6 class="card-subtitle mb-2 text-muted"><?=$entity_array[$i]['user'] ?></h6>
@@ -19,6 +20,9 @@ function display_entity($entity_array) {
 			</div>
 		</div>
 		</div>
+		<?php if ($i%3==0 && $i != 0){ 
+		echo "</div><div class='row'>";		
+		}?>
 	<?php }
 	/*
 	for($i=0;$i<count($col_2_array);$i++) { ?>
