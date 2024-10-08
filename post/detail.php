@@ -39,7 +39,7 @@ function get_entity() {
 
 	<?php
 		if (isset($_SESSION['username'])) { ?>
-			<a href="edit.php" class="btn btn-primary m-4">Make Edits</a>
+			<a href="edit.php" class="btn btn-primary m-4">Add To This Story!</a>
 	<?php } 
 		if($_SESSION['username']==$post[$i]['user']){ ?>
 			<a href="delete.php" class="btn btn-primary m-4">Delete Entry</a>
