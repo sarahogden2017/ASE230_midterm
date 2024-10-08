@@ -58,7 +58,12 @@
     $message = "Please enter a username.";
   }
 
-
+  // continue as guest
+  if (isset($_POST['guest'])) {
+    $_SESSION['username'] = 'Guest';
+    header("Location: ./post/index.php");
+    exit();
+  }
 ?>
 
 <html>
@@ -86,12 +91,13 @@
         <input type="password" name="password_signup" placeholder="Password">
         <input type="submit" value="Sign Up" class="btn btn-success">
       </form>
-      <button class="btn btn-danger">CONTINUE AS GUEST</button>
+      <form action="" method="post">
+        <input type="submit" value="Continue as Guest" name="guest" class="btn btn-danger">
+      </form>
     </div>
   </body>
 
   <script>
-    // alert message
     var message = "<?php echo $message; ?>";
     if (message) {
       alert(message);
