@@ -1,6 +1,5 @@
 <?php
 session_start();
-
  $i=$_GET['post_id'];
  
 function get_entity() {
@@ -25,23 +24,34 @@ function get_entity() {
 		<h2><?=$post[$i]['prompt'];?></h2>
 		<h3>
 	  	Prompted by:
-	  	<small class="text-body-secondary"><?=$post[$i]['user'];?></small>
+	  	<small class="text-body-secondary"><?=$post[$i]['author'];?></small>
 		</h3>
 	 	<h4><br /> <br /> The continuous story starts here: <br /></h4>
-	 	<p>
-	 	<?=$post[$i]['text'];?>
-	 	</p>
-	 	</div>
+	
+	 	<?php
+		foreach ($post[$i]['story'] as $addition){
+			?>
+			<div background-color="lightgrey">
+			<h6 vertical-align="text-top" text-align="left"><?=$addition['user']."<br />".$addition['date']?></h6>
+			<p text-align="center">
+			<?=$addition['text']?>
+			</p>
+			</div>
+			<hr>
+		<?php	
+		}
+		?>
+	</div>
  	</body>
 	<div class="mb-4">
 		<a href="index.php" class="btn btn-primary m-4">Back to prompt index</a>
 	</div>
 
 	<?php
-		if (isset($_SESSION['username'])) { ?>
-			<a href="edit.php" class="btn btn-primary m-4">Add To This Story!</a>
+		if($_SESSION['username']!="guest"){ ?>
+			<a href="edit.php?post_id=<?= $i ?>"" class="btn btn-primary m-4">Add To This Story!</a>
 	<?php } 
-		if($_SESSION['username']==$post[$i]['user']){ ?>
+		if($_SESSION['username']==$post[$i]['author']){ ?>
 			<a href="delete.php" class="btn btn-primary m-4">Delete Entry</a>
 	<?php }?>
 
