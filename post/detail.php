@@ -1,5 +1,6 @@
 <?php
 session_start();
+
  $i=$_GET['post_id'];
  
 function get_entity() {
@@ -31,13 +32,14 @@ function get_entity() {
 	 	<?php
 		foreach ($post[$i]['story'] as $addition){
 			?>
-			<div background-color="lightgrey">
-			<h6 vertical-align="text-top" text-align="left"><?=$addition['user']."<br />".$addition['date']?></h6>
+			<div class="row">
+				<div class="column" style="float:left;width: 50%;"><?=$addition['user']?></div>
+				<div class="column" style="float:right;width: 50%;"><?=$addition['date']?></div>
+				<hr>
+			</div>
 			<p text-align="center">
 			<?=$addition['text']?>
 			</p>
-			</div>
-			<hr>
 		<?php	
 		}
 		?>
