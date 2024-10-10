@@ -50,13 +50,14 @@ if (isset($_POST['content']) && ($_POST['content'] != "\0")){
 	 	<?php
 		foreach ($post[$i]['story'] as $addition){
 			?>
-			<div background-color="lightgrey">
-			<h6 vertical-align="text-top" text-align="left"><?=$addition['user']."<br />".$addition['date']?></h6>
+			<div class="row">
+				<div class="column" style="float:left;width: 50%;"><?=$addition['user']?></div>
+				<div class="column" style="float:right;width: 50%;"><?=$addition['date']?></div>
+				<hr>
+			</div>
 			<p text-align="center">
 			<?=$addition['text']?>
 			</p>
-			</div>
-			<hr>
 		<?php	
 		}
 		?>
@@ -65,7 +66,7 @@ if (isset($_POST['content']) && ($_POST['content'] != "\0")){
 			<fieldset>
 				<legend>EDIT MODE </legend>
 				<label for="exampleTextarea" class="form-label mt-4">Your contribution...</label>
-				<textarea name="content" class="form-control" id="exampleTextarea" style="height: 300px;"></textarea>
+				<textarea name="content" class="form-control" id="exampleTextarea" style="height: 300px;" required></textarea>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</fieldset>
 		</form>
