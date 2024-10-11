@@ -60,8 +60,13 @@ function display_entity($entity_array) {
     </div>
   </div>
   <div class="container">
-    <?php if($_SESSION['username']!="guest"){ ?>
+    <?php if($_SESSION['username']!="guest" && isset($_SESSION['username'])){ ?>
 			<a href="create.php" class="btn btn-primary m-4">Create a New Story!</a>
+    <?php } ?>
+  </div> 
+  <div class="container">
+    <?php if($_SESSION['username']!="guest" && isset($_SESSION['username'])){ ?>
+      <a href="../logout.php" class="btn btn-danger m-4">Logout</a>
     <?php } ?>
   </div> 
 </body>

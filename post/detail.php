@@ -54,13 +54,13 @@ function get_entity() {
 	</div>
 
 	<?php
-		if($_SESSION['username']!="guest"){ ?>
+		if($_SESSION['username']!="guest"  && isset($_SESSION['username'])){ ?>
 			<a href="edit.php?post_id=<?= $i ?>" class="btn btn-primary m-4">Add To This Story!</a>
 	<?php } 
 		if($_SESSION['username']==$post[$i]['author']){ ?>
 			<form action="delete.php?id=<?= $i ?>" method="POST">
-	     <input type="submit" value="Delete" name="delete" class="btn btn-danger">
-	     </form>
+	    	<input type="submit" value="Delete" name="delete" class="btn btn-danger">
+	    </form>
 	<?php }?>
 
 </html>
