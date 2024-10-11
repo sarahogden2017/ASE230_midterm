@@ -62,7 +62,6 @@
   if (isset($_POST['guest'])) {
     $_SESSION['username'] = 'guest';
     header("Location: ./post/index.php");
-    exit();
   }
 ?>
 

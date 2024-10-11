@@ -1,51 +1,42 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: ../index.php');
-    exit();
-}
+    session_start();
+    function save_entity($entity) {
+        $jsonString = file_get_contents('./posts.json');
+        $entity_array = json_decode($jsonString, true);
+        $entity_array[] = $entity;
+        file_put_contents('./posts.json', json_encode($entity_array, JSON_PRETTY_PRINT));
+    }
 
-function save_entity($entity) {
-    $jsonString = file_get_contents(__DIR__ . '/../posts.json');
-    $entity_array = json_decode($jsonString, true);
-    $entity_array[] = $entity;
-    file_put_contents(__DIR__ . '/../posts.json', json_encode($entity_array));
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $entity = [
-        'prompt' => $_POST['entity_name'],
-        'user' => $_SESSION['username'],
-        'text' => $_POST['entity_description']
-    ];
-    save_entity($entity);
-    header('Location: index.php');
-    exit();
-}
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $entity = [
+            'prompt' => $_POST['prompt'],
+            'story' => [],
+            'author' => $_SESSION['username'],
+        ];
+        save_entity($entity);
+        header('Location: index.php');
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Entity</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <h1>Create New Entity</h1>
-        <form action="create.php" method="post">
-            <div class="form-group">
-                <label for="entity_name">Name</label>
-                <input type="text" class="form-control" id="entity_name" name="entity_name" required>
-            </div>
-            <div class="form-group">
-                <label for="entity_description">Description</label>
-                <textarea class="form-control" id="entity_description" name="entity_description" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Story</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="d-flex justify-content-center align-items-center">
+        <h1 class="bg-primary text-white p-3 w-100">Create New Story</h1>
+        </div>
+        <div class="container justify-content-center align-items-center">
+            <form action="create.php" method="post">
+                <label class="h2" for="new_story">Prompt</label>
+                <input type="text" class="form-control" id="prompt" name="prompt" required>
+                <input type="submit" class="btn btn-primary m-4">
+            </form>
+        </div>
+    </body>
 </html>
